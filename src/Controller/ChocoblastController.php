@@ -74,4 +74,29 @@ class ChocoblastController extends AbstractController
         $this->chocoblastService->update($chocoblast);
         return $this->redirectToRoute('app_chocoblast_all_inactive');
     }
+
+    #[Route('/chocoblast/countauthor', name:'app_chocoblast_countauthor')]
+    public function countByAuthor(): Response{
+        $count = $this->chocoblastService->getCountByAuthor();
+        $json = $this->json($count);
+        return $this->render('chocoblast/countChocoblastbyAuthor.html.twig', [
+            'topAuthor'=> $json->getContent()
+        ]);
+    }
+
+    #[Route('/chocoblast/counttarget', name:'app_chocoblast_counttarget')]
+    public function countByTarget(): Response{
+        $count = $this->chocoblastService->getCountByTarget();
+        $json = $this->json($count);
+        return $this->render('chocoblast/countChocoblastbyTarget.html.twig', [
+            'topTarget'=> $json->getContent()
+        ]);
+    }
+
+    #[Route('/chocoblast/count', name:'app_chocoblast_count')]
+    public function count(): Response{
+        return $this->render('chocoblast/countChocoblast.html.twig', [
+        ]);
+    }
+
 }

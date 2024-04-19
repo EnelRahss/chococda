@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Top{% endblock %}
+
+{% block body %}
+
+<div id="top-author">
+{{ render(path('app_chocoblast_counttarget')) }}
+{{ render(path('app_chocoblast_countauthor')) }}
+</div>
+
+{% endblock %}

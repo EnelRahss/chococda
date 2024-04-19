@@ -20,6 +20,18 @@ class SecurityController extends AbstractController
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
+        if($this->getUser()){
+            $msg = "connecte";
+            $type = "success";
+            $this->addFlash($type, $msg);
+        }
+        if($error) {
+            $msg = "Email ou mot de passe incorrect";
+            $type = "warning";
+            $this->addFlash($type, $msg);
+        }
+
+
 
         return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
